@@ -1,3 +1,10 @@
+# Checks if machine has required packages to run script ------------------
+
+packages <- c("readxl", "tidyr", "dplyr", "ggplot2")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())))  
+}
+
 # Download and import -----------------------------------------------------
 
 url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xls"
