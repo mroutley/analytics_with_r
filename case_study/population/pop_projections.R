@@ -1,9 +1,10 @@
 # Checks if machine has required packages to run script ------------------
 
-packages <- c("readxl", "tidyr", "dplyr", "ggplot2")
+packages <- c("tidyverse", "readxl")
 if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
   install.packages(setdiff(packages, rownames(installed.packages())))  
 }
+library(tidyverse)
 
 # Download and import -----------------------------------------------------
 
@@ -19,7 +20,6 @@ rm(proj_dfs)
 
 # Reformat data -----------------------------------------------------------
 
-library(dplyr)
 projections <- projections %>%
   filter(!is.na(Age), !is.na(Count)) %>% # Drop blank and notes rows
   # Because there is a blank line after the header rows, 
