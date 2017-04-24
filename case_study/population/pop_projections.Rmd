@@ -6,9 +6,9 @@ output: word_document
 ---
 
 ```{r, setup, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
-url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xlsx"
+url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xls"
 filename <- basename(url)
-# download.file(url, destfile = filename, mode="wb")
+download.file(url, destfile = filename, mode="wb")
 # Read each sheet in the Excel file, starting on row 5, into a dataframe
 proj_dfs <- lapply(readxl::excel_sheets(filename), readxl::read_excel, path = filename, skip = 5)
 # Bind the dataframes into one and convert from wide with years as columns 
