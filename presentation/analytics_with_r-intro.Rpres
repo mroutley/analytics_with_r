@@ -61,6 +61,7 @@ source: example.R
 Case study
 ========================================================
 type:prompt
+source: ../case_study/population/pop_projections.R
 
 Setting up an R-based toolkit
 ========================================================
