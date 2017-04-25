@@ -1,7 +1,7 @@
 Analytics with R
 ========================================================
 author: Matthew Routley
-date: July 10, 2015
+date: `r format(Sys.time(), '%d %B, %Y')`
 
 ```{r setup, include=FALSE}
 opts_chunk$set(cache=TRUE)
@@ -78,7 +78,7 @@ Resources
 - [METACRAN](http://www.r-pkg.org/)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/r)
 - [#RStats](https://twitter.com/search?q=%23rstats)
-- <matthew.routley@ontario.ca>
+- <matt.routley@metrolinx.com>
 
 Future topics
 ========================================================

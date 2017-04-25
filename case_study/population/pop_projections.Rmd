@@ -1,7 +1,7 @@
 ---
 title: "Policy implications of changing dependency ratios for children and seniors"
 author: "Matthew Routley"
-date: "July 10, 2015"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: word_document
 ---
 
