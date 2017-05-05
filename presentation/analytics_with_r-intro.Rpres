@@ -5,6 +5,7 @@ date: `r format(Sys.time(), '%d %B, %Y')`
 
 ```{r setup, include=FALSE}
 opts_chunk$set(cache=TRUE)
+pkg_count <- dim(available.packages(contrib.url(repos = "https://cran.r-project.org/")))[1]
 ```
 
 What is R?
@@ -24,7 +25,7 @@ What is R?
 
 ![RStudio logo](images/rstudio_logo.png)
 
-- Packages for anything you need (10,547 on CRAN) 
+- Packages for anything you need (`r pkg_count` on CRAN) 
 - RStudio integrates everything
 - Evolving into an analytics product
 
