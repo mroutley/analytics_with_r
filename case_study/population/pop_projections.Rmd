@@ -15,13 +15,9 @@ proj_dfs <- lapply(readxl::excel_sheets(filename), readxl::read_excel, path = fi
 # to long with age, year, and count columns
 projections <- do.call("rbind", lapply(proj_dfs, tidyr::gather, Year, Count, -Age))
 rm(proj_dfs)
-library(dplyr)
+library(tidyr)
 projections <- projections %>%
   filter(!is.na(Age), !is.na(Count)) %>% # Drop blank and notes rows
-  # Because there is a blank line after the header rows, 
-  # age and year are interpreted as character
-  mutate(Age = stringr::str_replace(Age, ".000000", ""),
-         Year = stringr::str_replace(Year, ".000000", "")) %>%
   # Convert 90+ to just 90
   mutate(Age = stringr::str_replace(Age, "90\\+", "90")) %>%
   mutate(Age = as.integer(Age), Year = as.integer(Year)) %>%
