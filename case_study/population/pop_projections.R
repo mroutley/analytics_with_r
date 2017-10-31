@@ -11,11 +11,11 @@ library(tidyverse)
 url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xlsx"
 filename <- basename(url)
 download.file(url, destfile = filename, mode = "wb")
-# Read each sheet in the Excel file, starting on row 5, into a dataframe
-proj_dfs <- lapply(readxl::excel_sheets(filename), readxl::read_excel, path = filename, skip = 5)
-# Bind the dataframes into one and convert from wide with years as columns 
+# Read in the Excel file, starting on row 5, into a dataframe 
+# and convert from wide with years as columns 
 # to long with age, year, and count columns
-projections <- do.call("rbind", lapply(proj_dfs, tidyr::gather, Year, Count, -Age))
+projections <- readxl::read_xlsx(path = filename, skip = 4) %>% 
+  tidyr::gather(Year, Count, -Age)
 projections
 
 # Reformat data -----------------------------------------------------------
@@ -37,7 +37,7 @@ demographics <- projections %>%
   mutate(School_Age = ifelse(Age < child_threshold, 1, 0) * Count,
          Total_Age = ifelse(Age, 1, 0) * Count,
          Senior_Age = ifelse(Age > senior_threshold, 1, 0) * Count) %>%
-  group_by(Year) %>%
+  group_by(Year) %>% 
   summarise_each(funs(sum), contains("_Age")) %>%
   mutate(Child_Dependency = School_Age/Total_Age,
          Senior_Dependency = Senior_Age/Total_Age) %>% 
