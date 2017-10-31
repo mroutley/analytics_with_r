@@ -8,7 +8,7 @@ library(tidyverse)
 
 # Download and import -----------------------------------------------------
 
-url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xls"
+url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xlsx"
 filename <- basename(url)
 download.file(url, destfile = filename, mode = "wb")
 # Read each sheet in the Excel file, starting on row 5, into a dataframe
