@@ -8,14 +8,13 @@ library(tidyverse)
 
 # Download and import -----------------------------------------------------
 
-url <- "http://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xlsx"
+url <- "https://web.archive.org/web/20161014124140/https://www.fin.gov.on.ca/en/economy/demographics/projections/table6.xls"
 filename <- basename(url)
 download.file(url, destfile = filename, mode = "wb")
-# Read in the Excel file, starting on row 5, into a dataframe 
-# and convert from wide with years as columns 
-# to long with age, year, and count columns
-projections <- readxl::read_xlsx(path = filename, skip = 4) %>% 
-  tidyr::gather(Year, Count, -Age)
+# Read each sheet in the Excel file, starting on row 5, into a dataframe
+proj_dfs <- lapply(readxl::excel_sheets(filename), readxl::read_excel, path = filename, skip = 5)
+# Bind the dataframes into one and convert from wide with years as columns 
+projections <- do.call("rbind", lapply(proj_dfs, tidyr::gather, Year, Count, -Age))
 projections
 
 # Reformat data -----------------------------------------------------------
