@@ -5,7 +5,7 @@ date: "June 23, 2015"
 output: html_document
 ---
 
-Here are some basic instructions for setting up R and RStudio on Windows. Advanced options are included below for GitHub.
+Here are some basic instructions for setting up R and RStudio on Windows without admin rights. Advanced options are included below for GitHub.
 
 # Install R
 
